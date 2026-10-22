@@ -1,0 +1,30 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  security:
+    user:
+      # No default on purpose: server will not start unless these are provided
+      name: ${CONFIG_USER}
+      password: ${CONFIG_PASSWORD}
+  cloud:
+    config:
+      server:
+        native:
+          # Config files are read from src/main/resources/config
+          search-locations: classpath:/config
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

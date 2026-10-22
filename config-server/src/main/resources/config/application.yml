@@ -1,0 +1,13 @@
+# Common NON-SECRET settings shared by every service
+eureka:
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized

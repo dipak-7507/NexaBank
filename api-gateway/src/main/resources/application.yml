@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-gateway
+  config:
+    # No "optional:" on purpose: if config-server is down, gateway must fail fast
+    import: "configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+  cloud:
+    config:
+      username: ${CONFIG_USER}
+      password: ${CONFIG_PASSWORD}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
